@@ -88,6 +88,16 @@ def user_page(name):
 #     # 下面这个调用传入了多余的关键字参数，它们会被作为查询字符串附加到 URL 后面。
 #     print(url_for('test_url_for', num=2))  # 输出：/test?num=2
 #     return 'Test page'
+@app.errorhandler(404)  # 传入要处理的错误代码
+def page_not_found(e):  # 接受异常对象作为参数
+    return render_template('404.html')  # 返回模板和状态码
+
+
+@app.context_processor
+def inject_user():  # 函数名可以随意修改
+    user = User.query.first()
+    return dict(user=user)  # 需要返回字典，等同于 return {'user': user}
+#这个函数返回的变量（以字典键值对的形式）将会统一注入到每一个模板的上下文环境中，因此可以直接在模板中使用。
 
 
 if __name__ == "__main__":
