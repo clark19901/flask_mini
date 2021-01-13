@@ -3,16 +3,23 @@
 <head>
     <meta charset="utf-8">
     <title>{{ name }}'s Watchlist</title>
+    <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" type="text/css">
 </head>
 <body>
-    <h2>{{ name }}'s Watchlist</h2>
+
+<h2>
+<img alt="Avatar"  src="{{ url_for('static', filename='images/avatar.png') }}"  width="90">
+{{ name }}'s Watchlist
+</h2>
     {# 使用 length 过滤器获取 movies 变量的长度 #}
     <p>{{ movies|length }} Titles</p>
-    <ol>{# ul无序列表 ol有序列表#}
+    <ol class="movie-list">{# ul无序列表 ol有序列表#}
         {% for movie in movies %}  {# 迭代 movies 变量 #}
         <li>{{ movie.title }} - {{ movie.year }}</li>  {# 等同于 movie['title'] #}
         {% endfor %}  {# 使用 endfor 标签结束 for 语句 #}
     </ol>
+<img alt="Walking Totoro" src="{{ url_for('static', filename='images/totoro.gif') }}">
     <footer>
         <small>&copy; 2020 <a href="https://github.com/clark19901/flask_mini">Clark Learn Flask</a></small>
     </footer>
